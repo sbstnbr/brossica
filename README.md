@@ -1,5 +1,5 @@
 #TODO
-[ ] Add grid layout - https://material.io/develop/web/components/layout-grid/
+[x] Add webpack
 [ ] Add Instagram link
 [ ] Add logo
 [ ] Create custom map with itinerary
