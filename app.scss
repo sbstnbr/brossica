@@ -9,8 +9,18 @@ body {
 }
 
 .header {
-  text-align: center;
+  margin: 10px;
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.logo {
+  margin: auto;
+}
+
+.instagram {
+  align-self: center;
 }
 
 #map {
