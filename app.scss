@@ -11,23 +11,28 @@ body {
 .header {
   margin: 10px;
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-.logo {
-  margin: auto;
+.logo a img {
+  height: 140px;
 }
 
-.instagram {
-  align-self: center;
+.footer {
+  width: 100%;
+  margin: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.instagram a img {
+  height: 62px;
 }
 
 #map {
   position: relative;
   margin: 5px 0 5px 0;
-  padding-bottom: 56.25%;
-  height: 0;
+  height: 500px;
   clear: both;
 }
 

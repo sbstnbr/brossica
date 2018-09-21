@@ -1,6 +1,7 @@
 #TODO
 [x] Add webpack
-[ ] Add Instagram link
-[ ] Add logo
+[x] Add Instagram link
+[x] Add logo
+[ ] Add border to map
 [ ] Create custom map with itinerary
 [ ] Add Instagram posts on map
