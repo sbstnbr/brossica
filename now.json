@@ -1,5 +1,11 @@
 {
   "name": "brossica",
   "public": true,
-  "alias": "brossica.co"
+  "alias": "brossica.co",
+  "scale": {
+    "bru1": {
+      "min": 1,
+      "max": "auto"
+    }
+  }
 }
