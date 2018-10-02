@@ -17,8 +17,8 @@ const itinerary = [
 ];
 
 map.on('load', function () {
-  getItinerary(itinerary);
-  getRoute();
+  // getItinerary(itinerary);
+  itinerary.forEach((point,index) => getRoute(point, itinerary[index+1]));
 });
 
 
@@ -48,15 +48,14 @@ function getItinerary(itinerary) {
 });
 }
 
-function getRoute() {
-  var start = [2.2431251,48.9237226];
-  var end = [0.54338,45.04037];
+function getRoute(start,end) {
   var directionsRequest = 'https://api.mapbox.com/directions/v5/mapbox/driving/' + start[0] + ',' + start[1] + ';' + end[0] + ',' + end[1] + '?geometries=geojson&access_token=' + mapboxgl.accessToken;
   axios.get(directionsRequest)
     .then(response => {
+      console.log(response.data);
       var route = response.data.routes[0].geometry;
       map.addLayer({
-        id: 'route2',
+        id: 'route'+start+end,
         type: 'line',
         source: {
           type: 'geojson',
