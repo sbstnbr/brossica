@@ -2,6 +2,10 @@
   "name": "brossica",
   "public": true,
   "alias": "brossica.co",
+  "type": "static",
+  "static": {
+    "public": "dist"
+  },
   "scale": {
     "bru1": {
       "min": 1,
