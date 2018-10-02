@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = [
   {
@@ -20,13 +21,17 @@ module.exports = [
     },
     plugins: [  // Array of plugins to apply to build chunk
       new HtmlWebpackPlugin({
-          template: __dirname + "/src/public/index.html",
-          inject: 'body'
-      })
+        template: __dirname + "/src/public/index.html",
+        inject: 'body'
+      }),
+      new CopyWebpackPlugin([{
+        from: __dirname + '/src/public/assets',
+        to: 'assets'
+      }])
     ],
     devServer: {  // configuration for webpack-dev-server
-        contentBase: './src/public',  //source of static assets
-        port: 7700, // port to run dev-server
+      contentBase: './src/public',  //source of static assets
+      port: 7700, // port to run dev-server
     }
   },
   {
