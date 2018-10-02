@@ -15,6 +15,7 @@
     gtag('js', new Date());
     gtag('config', 'UA-125854394-1');
   </script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
 </head>
 <body>
   <div id="container">
@@ -26,10 +27,7 @@
       </div>
     </section>
     <section class="content">
-      <div class="map">
-        <iframe src="https://planificateur.a-contresens.net/embed-itineraire/115968-carte?flag=0&style=osm&climate=0&itinerary=1&co2=0&budget=0&centercurrentstep=1&stepnumber=1&futurstep=normal" frameborder="0" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true" oallowfullscreen="true" msallowfullscreen="true">
-        </iframe>
-      </div>
+      <div id="map"></div>
     </section>
   </div>
   <!-- Fastory widget: Use data-offset parameter to change the vertical position of the widget -->
