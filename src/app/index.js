@@ -9,7 +9,6 @@ const map = new mapboxgl.Map({
   zoom: 2.35,
   minZoom: 2.35,
   maxZoom: 4.5,
-  hash: true,
 });
 
 const itinerary = [
