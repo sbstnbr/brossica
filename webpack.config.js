@@ -1,9 +1,40 @@
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
+
 module.exports = [
   {
-    entry: './app.scss',
+    entry: "./src/app/index.js",
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: "bundle.js",
+      publicPath: '/' // public URL of the output directory when referenced in a browser
+    },
+    module: {
+      loaders: [{
+        test: /\.js$/,
+        loader: 'babel-loader',
+        query: {
+          presets: ['env']
+        }
+      }]
+    },
+    plugins: [  // Array of plugins to apply to build chunk
+      new HtmlWebpackPlugin({
+          template: __dirname + "/src/public/index.html",
+          inject: 'body'
+      })
+    ],
+    devServer: {  // configuration for webpack-dev-server
+        contentBase: './src/public',  //source of static assets
+        port: 7700, // port to run dev-server
+    }
+  },
+  {
+    entry: './src/style/app.scss',
     output: {
       // This is necessary for webpack to compile
       // But we never use style-bundle.js
+      path: path.resolve(__dirname, 'dist'),
       filename: 'style-bundle.js',
     },
     module: {
@@ -25,21 +56,6 @@ module.exports = [
             }
           },
         ]
-      }]
-    },
-  },
-  {
-    entry: "./app.js",
-    output: {
-      filename: "bundle.js"
-    },
-    module: {
-      loaders: [{
-        test: /\.js$/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['env']
-        }
       }]
     },
   },
