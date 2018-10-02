@@ -13,10 +13,11 @@ module.exports = [
     module: {
       loaders: [{
         test: /\.js$/,
+        exclude: /mapbox-gl/,
         loader: 'babel-loader',
         query: {
           presets: ['env']
-        }
+        },
       }]
     },
     plugins: [  // Array of plugins to apply to build chunk
