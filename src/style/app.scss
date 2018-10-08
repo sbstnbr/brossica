@@ -3,11 +3,20 @@ html, body {
 }
 
 body {
-  font-family: 'Conforta';
-  font-size: 10px;
-  font-weight: 300;
   margin: 0;
   padding-top: 0.1px; // Prevent header h1 margin from pushing body down
+}
+
+body p {
+  font-family: 'Comfortaa', cursive;
+  font-size: 10px;
+  font-weight: 300;
+}
+
+body h2 {
+  font-family: 'Comfortaa', cursive;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .header {
@@ -55,12 +64,16 @@ body {
 }
 
 #description-him img{
-  // width: 40px;
+  width: 80px;
 }
 
 #description-her {
   width: 40%;
   text-align: right;
+}
+
+#description-her img{
+  width: 80px;
 }
 
 #description-trip {
