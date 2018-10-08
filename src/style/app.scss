@@ -3,9 +3,20 @@ html, body {
 }
 
 body {
-  font-family: 'Roboto';
   margin: 0;
   padding-top: 0.1px; // Prevent header h1 margin from pushing body down
+}
+
+body p {
+  font-family: 'Comfortaa', cursive;
+  font-size: 10px;
+  font-weight: 300;
+}
+
+body h2 {
+  font-family: 'Comfortaa', cursive;
+  font-size: 12px;
+  font-weight: 400;
 }
 
 .header {
@@ -27,13 +38,45 @@ body {
   border-radius: 10px;
 }
 
-.map iframe {
+#map iframe {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   border: 0;
+}
+
+#description {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+#description-them {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#description-them img{
+  width: 80px;
+  height: 80px;
+}
+
+#description-him {
+  width: 40%;
+}
+
+
+#description-her {
+  width: 40%;
+  text-align: right;
+}
+
+#description-trip {
+  text-align: center;
+  align-self: center;
 }
 
 // Tablets portait and up
@@ -44,5 +87,25 @@ body {
 
   .map {
     height: 600px;
+  }
+
+  body p {
+    font-size: 12px;
+  }
+  
+  body h2 {
+    font-size: 14px;
+  }
+
+  #description-him {
+    width: 300px;
+  }
+
+  #description-her {
+    width: 300px;
+  }
+
+  #description-trip {
+    width: 60%;
   }
 }
