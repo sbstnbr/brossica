@@ -17,7 +17,7 @@ const itinerary = [
 
 map.on('load', function () {
   // getItinerary(itinerary);
-  // itinerary.forEach((point,index) => getRoute(point, itinerary[index+1]));
+  itinerary.forEach((point,index) => getRoute(point, itinerary[index+1]));
 });
 
 
