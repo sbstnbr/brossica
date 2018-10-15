@@ -1,13 +1,14 @@
 import mapboxgl from 'mapbox-gl';
 import axios from 'axios';
 import routes from '../batch/routes.json';
+import posts from '../data/posts.json';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2JzdG5iciIsImEiOiJjamwybm0xOXYwMDcwM3Fwa3h0amZsZ2F3In0.dT34qctpNYbAjJCN5nrMsQ';
 
 const map = new mapboxgl.Map({
-  container: 'map', 
+  container: 'map',
   style: 'mapbox://styles/mapbox/streets-v9',
-  center: [12.35,57.82],
+  center: [12.35, 57.82],
   zoom: 2.35,
   minZoom: 2.35,
   maxZoom: 4.5,
@@ -16,12 +17,44 @@ const map = new mapboxgl.Map({
 
 map.on('load', function () {
   loadItinerary(map, routes);
+  loadPosts(map);
 });
 
-function loadItinerary(map, routes){
+// When a click event occurs on a feature in the places layer, open a popup at the
+// location of the feature, with description HTML from its properties.
+map.on('click', 'places', function (e) {
+  var coordinates = e.features[0].geometry.coordinates.slice();
+  var description = e.features[0].properties.description;
+
+  // Ensure that if the map is zoomed out such that multiple
+  // copies of the feature are visible, the popup appears
+  // over the copy being pointed to.
+  while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+  }
+
+  new mapboxgl.Popup({className: "popup"})
+    .setLngLat(coordinates)
+    .setHTML(description)
+    .addTo(map);
+  instgrm.Embeds.process()
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'places', function () {
+  map.getCanvas().style.cursor = 'pointer';
+});
+
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'places', function () {
+  map.getCanvas().style.cursor = '';
+});
+
+
+function loadItinerary(map, routes) {
   routes.forEach(route => {
     map.addLayer({
-      id: 'route'+route.uuid,
+      id: 'route' + route.uuid,
       type: 'line',
       source: {
         type: 'geojson',
@@ -34,6 +67,18 @@ function loadItinerary(map, routes){
         'line-width': 2
       }
     });
+  });
+}
+
+function loadPosts(map) {
+  map.addLayer({
+    "id": "places",
+    "type": "symbol",
+    "source": posts,
+    "layout": {
+      "icon-image": "{icon}-15",
+      "icon-allow-overlap": true
+    }
   });
 }
 
