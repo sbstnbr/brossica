@@ -6,4 +6,5 @@
 - [x] Switch to static packaging
 - [x] Create custom map with itinerary
 - [x] Add dates
-- [ ] Add Instagram posts on map
+- [x] Add Instagram posts on map
+- [ ] Create batch for IG

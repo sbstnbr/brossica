@@ -92,7 +92,7 @@ function loadPosts(map,data){
     if (post.location.latitude && post.location.longitude) {
       new mapboxgl.Marker()
         .setLngLat([post.location.longitude, post.location.latitude])
-        .setPopup(new mapboxgl.Popup().setHTML('<img style="height:300px;width:300px" src='+post.images.standard_resolution.url+'>'))
+        .setPopup(new mapboxgl.Popup().setHTML('<a href="'+post.link+'" target="_blank"><img style="height:300px;width:300px" src='+post.images.standard_resolution.url+'></a>'))
         .addTo(map);
     } else {
       console.log(post);
