@@ -45,6 +45,7 @@ async function getRoute(start,end) {
   if(JSON.stringify(start) === JSON.stringify(boatRoute.start) && JSON.stringify(end) === JSON.stringify(boatRoute.end)){
     console.log('Boat ride!');
     return {
+      "status": 200,
       "data": {
         "routes": [
           {
