@@ -14,13 +14,6 @@ const itinerary = [
 
 const googleSheetUrl = 'https://spreadsheets.google.com/feeds/list/1nABudmgmscjQmmZZZUUCbyC8n4HHPeEVyg-KWw6LyKQ/1/public/values?alt=json';
 
-// getRoutes(itinerary)
-//   .then(routesResult => fs.writeFile(__dirname+'/routes.json', JSON.stringify(routesResult), (err) => {  
-//     if (err) throw err;
-//     console.log('Routes saved!');
-//   }))
-//   .catch(err => console.log('ERROR'))
-
 getData(googleSheetUrl)
   .then(response => getRoutes(response.data.feed.entry))
   .then(routesResult => fs.writeFile(__dirname+'/routes.json', JSON.stringify(routesResult), (err) => {  
@@ -33,8 +26,6 @@ getData(googleSheetUrl)
 async function getRoutes(itinerary){
   const result = [];
   for (let index = 0; index < itinerary.length-1; index++) {
-    // const response = await getRoute(itinerary[index],itinerary[index+1]);
-    // result.push(response.data);
     const start = JSON.parse(itinerary[index].gsx$coordinates.$t);
     const end = JSON.parse(itinerary[index+1].gsx$coordinates.$t);
     if (start && end){
