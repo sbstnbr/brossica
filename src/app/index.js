@@ -1,6 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import routes from '../data/routes.json';
 import data from '../data/posts_20181015.json';
+import cities from '../data/cities.json';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2JzdG5iciIsImEiOiJjamwybm0xOXYwMDcwM3Fwa3h0amZsZ2F3In0.dT34qctpNYbAjJCN5nrMsQ';
 
@@ -16,13 +17,14 @@ const map = new mapboxgl.Map({
 
 map.on('load', function () {
   loadItinerary(map, routes);
-  // loadDummyPosts(map);
   loadPosts(map,data);
+  loadGeoJson(map,'cities',cities);
+  // loadCities(map,cities);
 });
 
 // When a click event occurs on a feature in the places layer, open a popup at the
 // location of the feature, with description HTML from its properties.
-map.on('click', 'places', function (e) {
+map.on('click', 'cities', function (e) {
   var coordinates = e.features[0].geometry.coordinates.slice();
   var description = e.features[0].properties.description;
 
@@ -37,9 +39,6 @@ map.on('click', 'places', function (e) {
     .setLngLat(coordinates)
     .setHTML(description)
     .addTo(map);
-  
-  // Loads instagram picture
-  instgrm.Embeds.process()
 });
 
 // Change the cursor to a pointer when the mouse is over the places layer.
@@ -72,13 +71,16 @@ function loadItinerary(map, routes) {
   });
 }
 
-function loadDummyPosts(map) {
+function loadGeoJson(map,name,data) {
   map.addLayer({
-    "id": "places",
+    "id": name,
     "type": "symbol",
-    "source": posts,
+    "source": {
+      "type": "geojson",
+      "data": data
+    },
     "layout": {
-      "icon-image": "{icon}-15",
+      "icon-image": "{icon}-11",
       "icon-allow-overlap": true
     }
   });
@@ -96,5 +98,4 @@ function loadPosts(map,data){
       console.log(post);
     }
   });
-  
 }

@@ -1,7 +1,13 @@
-const axios = require('axios');
+const dummyCities = require('../data/cities.json');
+const geojson = require('geojson'); 
 
-axios.get('https://spreadsheets.google.com/feeds/list/1nABudmgmscjQmmZZZUUCbyC8n4HHPeEVyg-KWw6LyKQ/1/public/values?alt=json')
-  .then(response => {
-    response.data.feed.entry.forEach(entry => console.log(entry.content.$t));
-  })
-  .catch(err => console.log(err));
+const cities = dummyCities.map(city => ({
+  lat: city.gsx$lat.$t.replace(/,/g, '.'),
+  lng: city.gsx$lng.$t.replace(/,/g, '.'),
+  // to: city['gsx$date-end'].$t,
+  name: city.gsx$city.$t,
+}));
+
+const geoJsonCities = geojson.parse(cities, {Point: ['lat', 'lng']});
+
+console.log(JSON.stringify(geoJsonCities));

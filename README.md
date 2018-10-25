@@ -13,3 +13,6 @@
 - [ ] Save IG posts in DB
 - [ ] Set up Ghost
 - [ ] Add friend visits
+
+# LINKS
+- Mapbox icons https://www.mapbox.com/maki-icons/
