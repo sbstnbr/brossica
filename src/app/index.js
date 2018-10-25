@@ -1,5 +1,5 @@
 import mapboxgl from 'mapbox-gl';
-import routes from '../batch/routes.json';
+import routes from '../data/routes.json';
 import data from '../data/posts_20181015.json';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2JzdG5iciIsImEiOiJjamwybm0xOXYwMDcwM3Fwa3h0amZsZ2F3In0.dT34qctpNYbAjJCN5nrMsQ';

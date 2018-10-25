@@ -23,7 +23,7 @@ getData(googleSheetUrl)
     return response.data.feed.entry;
   })
   .then(cities => getRoutes(cities))
-  .then(routesResult => fs.writeFile(__dirname+'/routes.json', JSON.stringify(routesResult), (err) => {  
+  .then(routesResult => fs.writeFile(__dirname+'/../data/routes.json', JSON.stringify(routesResult), (err) => {  
     if (err) throw err;
     console.log('Routes saved!');
   }))
