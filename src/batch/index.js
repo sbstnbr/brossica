@@ -15,7 +15,14 @@ const itinerary = [
 const googleSheetUrl = 'https://spreadsheets.google.com/feeds/list/1nABudmgmscjQmmZZZUUCbyC8n4HHPeEVyg-KWw6LyKQ/1/public/values?alt=json';
 
 getData(googleSheetUrl)
-  .then(response => getRoutes(response.data.feed.entry))
+  .then(response => {
+    fs.writeFile(__dirname+'/../data/cities.json', JSON.stringify(response.data.feed.entry), (err) => {  
+      if (err) throw err;
+      console.log('Cities saved!');
+    })
+    return response.data.feed.entry;
+  })
+  .then(cities => getRoutes(cities))
   .then(routesResult => fs.writeFile(__dirname+'/routes.json', JSON.stringify(routesResult), (err) => {  
     if (err) throw err;
     console.log('Routes saved!');
