@@ -29,11 +29,11 @@ getData(googleSheetUrl)
     writeFile(__dirname+'/../data/cities.json',JSON.stringify(geoJsonCities),'Cities saved!')
     return cities;
   })
-  .then(cities => getRoutes(cities))
-  .then(routesResult => fs.writeFile(__dirname+'/../data/routes.json', JSON.stringify(routesResult), (err) => {  
-    if (err) throw err;
-    console.log('Routes saved!');
-  }))
+  // .then(cities => getRoutes(cities))
+  // .then(routesResult => fs.writeFile(__dirname+'/../data/routes.json', JSON.stringify(routesResult), (err) => {  
+  //   if (err) throw err;
+  //   console.log('Routes saved!');
+  // }))
   .catch(err => console.log('ERROR',err))
 
 

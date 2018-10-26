@@ -82,6 +82,7 @@ function loadGeoJson(map,name,data) {
     "layout": {
       "icon-image": "{icon}-11",
       "icon-allow-overlap": true
+      // "icon-color": "#000000"
     }
   });
 }
