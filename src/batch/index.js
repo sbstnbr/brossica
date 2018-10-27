@@ -88,3 +88,5 @@ async function writeFile(path,data,message){
     console.log(message);
   })
 }
+
+export { writeFile }
