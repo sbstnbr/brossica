@@ -9,9 +9,9 @@ async function getData(url) {
   return response.data.data;
 }
 
-function updatePostList(existingList, newList) {
-  return existingList.concat(newList).filter((post, index, self) => self.map(post => post.caption.id).indexOf(post.caption.id) === index);
-}
+const updatePostList = (existingList, newList) => existingList
+  .concat(newList)
+  .filter((post, index, self) => self.map(p => p.caption.id).indexOf(post.caption.id) === index);
 
 getData(instagramURL)
   .then((data) => {
