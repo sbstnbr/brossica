@@ -4,11 +4,11 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = [
   {
-    entry: "./src/app/index.js",
+    entry: './src/app/index.js',
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: "bundle.js",
-      publicPath: '/' // public URL of the output directory when referenced in a browser
+      filename: 'bundle.js',
+      publicPath: '/', // public URL of the output directory when referenced in a browser
     },
     module: {
       loaders: [{
@@ -16,24 +16,24 @@ module.exports = [
         exclude: /mapbox-gl/,
         loader: 'babel-loader',
         query: {
-          presets: ['env']
+          presets: ['env'],
         },
-      }]
+      }],
     },
-    plugins: [  // Array of plugins to apply to build chunk
+    plugins: [ // Array of plugins to apply to build chunk
       new HtmlWebpackPlugin({
-        template: __dirname + "/src/public/index.html",
-        inject: 'body'
+        template: `${__dirname}/src/public/index.html`,
+        inject: 'body',
       }),
       new CopyWebpackPlugin([{
-        from: __dirname + '/src/public/assets',
-        to: 'assets'
-      }])
+        from: `${__dirname}/src/public/assets`,
+        to: 'assets',
+      }]),
     ],
-    devServer: {  // configuration for webpack-dev-server
-      contentBase: './src/public',  //source of static assets
+    devServer: { // configuration for webpack-dev-server
+      contentBase: './src/public', // source of static assets
       port: 7700, // port to run dev-server
-    }
+    },
   },
   {
     entry: './src/style/app.scss',
@@ -59,10 +59,10 @@ module.exports = [
             loader: 'sass-loader',
             options: {
               includePaths: ['./node_modules'],
-            }
+            },
           },
-        ]
-      }]
+        ],
+      }],
     },
   },
 ];

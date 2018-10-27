@@ -7,7 +7,8 @@
     "test": "ava --verbose",
     "test:watch": "ava --watch --verbose",
     "start": "webpack-dev-server --progress --inline",
-    "batch:instagram": "babel-node src/batch/instagram.js"
+    "batch:instagram": "babel-node src/batch/instagram.js",
+    "lint": "eslint src --fix"
   },
   "devDependencies": {
     "@babel/cli": "^7.1.2",
@@ -16,6 +17,9 @@
     "@babel/register": "^7.0.0",
     "ava": "1.0.0-rc.1",
     "css-loader": "^0.28.0",
+    "eslint": "^5.8.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
     "extract-loader": "^1.0.2",
     "file-loader": "^1.1.11",
     "node-sass": "^4.9.0",
