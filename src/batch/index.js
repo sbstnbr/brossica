@@ -87,4 +87,4 @@ async function writeFile(path, data, message) {
   });
 }
 
-export { writeFile };
+export default { writeFile };

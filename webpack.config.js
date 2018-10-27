@@ -16,7 +16,7 @@ module.exports = [
         exclude: /mapbox-gl/,
         loader: 'babel-loader',
         query: {
-          presets: ['env'],
+          presets: ['@babel/preset-env'],
         },
       }],
     },

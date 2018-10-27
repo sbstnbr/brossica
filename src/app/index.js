@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import routes from '../data/routes.json';
-import data from '../data/posts_20181015.json';
+import posts from '../data/posts.json';
 import cities from '../data/cities.json';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2JzdG5iciIsImEiOiJjamwybm0xOXYwMDcwM3Fwa3h0amZsZ2F3In0.dT34qctpNYbAjJCN5nrMsQ';
@@ -17,7 +17,7 @@ const map = new mapboxgl.Map({
 
 map.on('load', () => {
   loadItinerary(map, routes);
-  loadPosts(map, data);
+  loadPosts(map, posts);
   loadGeoJson(map, 'cities', cities);
   // loadCities(map,cities);
 });
@@ -87,8 +87,7 @@ function loadGeoJson(map, name, data) {
   });
 }
 
-function loadPosts(map, data) {
-  const posts = data.data;
+function loadPosts(map, posts) {
   posts.forEach((post) => {
     if (post.location.latitude && post.location.longitude) {
       new mapboxgl.Marker()
