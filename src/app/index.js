@@ -14,14 +14,6 @@ const map = new mapboxgl.Map({
   maxZoom: 4.5,
 });
 
-
-map.on('load', () => {
-  loadItinerary(map, routes);
-  loadPosts(map, posts);
-  loadGeoJson(map, 'cities', cities);
-  // loadCities(map,cities);
-});
-
 // When a click event occurs on a feature in the places layer, open a popup at the
 // location of the feature, with description HTML from its properties.
 map.on('click', 'cities', (e) => {
@@ -99,3 +91,10 @@ function loadPosts(map, posts) {
     }
   });
 }
+
+map.on('load', () => {
+  loadItinerary(map, routes);
+  loadPosts(map, posts);
+  loadGeoJson(map, 'cities', cities);
+  // loadCities(map,cities);
+});
