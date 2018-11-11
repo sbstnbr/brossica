@@ -1,6 +1,7 @@
-import { getData, writeFile } from './map';
+import { getData, writeFile, getRoutes } from './map';
 
 const geojson = require('geojson');
+const fs = require('fs');
 
 const googleSheetUrl = 'https://spreadsheets.google.com/feeds/list/1nABudmgmscjQmmZZZUUCbyC8n4HHPeEVyg-KWw6LyKQ/1/public/values?alt=json';
 
@@ -22,10 +23,10 @@ getData(googleSheetUrl)
     writeFile(`${__dirname}/../data/cities.json`, JSON.stringify(geoJsonCities), 'Cities saved!');
     return cities;
   })
-  // .then(cities => getRoutes(cities))
-  // .then(routesResult => fs.writeFile(__dirname+'/../data/routes.json',
-  // JSON.stringify(routesResult), (err) => {
-  //   if (err) throw err;
-  //   console.log('Routes saved!');
-  // }))
+  .then(cities => getRoutes(cities))
+  .then(routesResult => fs.writeFile(`${__dirname}/../data/routes.json`,
+    JSON.stringify(routesResult), (err) => {
+      if (err) throw err;
+      console.log('Routes saved!');
+    }))
   .catch(err => console.log('ERROR', err));
