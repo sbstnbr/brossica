@@ -7,8 +7,7 @@
     "test": "ava --verbose",
     "test:watch": "ava --watch --verbose",
     "start": "webpack-dev-server --progress --inline",
-    "batch:instagram": "babel-node src/batch/instagram.js",
-    "batch:map": "babel-node src/batch/index.js",
+    "batch": "babel-node src/batch/index.js",
     "lint": "eslint src --fix"
   },
   "devDependencies": {
