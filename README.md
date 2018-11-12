@@ -9,9 +9,8 @@
 - [x] Add Instagram posts on map
 - [x] Display cities on map
 - [x] Display dates on map
-- [ ] Create batch for IG
+- [x] Create batch for IG
 - [ ] Convert posts to layer
-- [ ] Save IG posts in DB
 - [ ] Set up Ghost
 - [ ] Add friend visits
 
