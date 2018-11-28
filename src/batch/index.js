@@ -41,11 +41,13 @@ getData(instagramURL)
     return response.data.data;
   })
   .then(data => updatePostList(existingPosts, data))
-  // .then(posts => fs.writeFile(`${__dirname}/../data/posts.json`, JSON.stringify(posts), (err) => {
-  //   if (err) throw err;
-  //   console.log('Posts saved');
-  //   return posts;
-  // }))
+  .then((posts) => {
+    fs.writeFile(`${__dirname}/../data/posts.json`, JSON.stringify(posts), (err) => {
+      if (err) throw err;
+      console.log('Posts saved');
+    });
+    return posts;
+  })
   .then((posts) => {
     const parsedPosts = posts.map(post => ({
       lat: post.location.latitude,
