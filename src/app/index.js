@@ -1,5 +1,4 @@
 import mapboxgl from 'mapbox-gl';
-import { removeDotSegments } from 'uri-js';
 import routes from '../data/routes.json';
 import posts from '../data/geoJsonPosts.json';
 import cities from '../data/cities.json';
@@ -97,9 +96,9 @@ function loadGeoJson(map, name, data) {
       'icon-allow-overlap': true,
       // "icon-color": "#000000"
     },
-    paint: {
-      'fill-color': '#00ffff',
-    },
+    // paint: {
+    //   'fill-color': '#00ffff',
+    // },
   });
 }
 
