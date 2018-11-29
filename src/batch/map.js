@@ -3,14 +3,14 @@ const axios = require('axios');
 
 const accessToken = 'pk.eyJ1Ijoic2JzdG5iciIsImEiOiJjamwybm0xOXYwMDcwM3Fwa3h0amZsZ2F3In0.dT34qctpNYbAjJCN5nrMsQ';
 
-const boatRoute = {
+const boatRoutes = [{
   start: [-3.8099803, 43.4623057],
   end: [-8.4863157, 51.8968917],
-};
+}];
 
 async function getRoute(start, end) {
-  if (JSON.stringify(start) === JSON.stringify(boatRoute.start)
-    && JSON.stringify(end) === JSON.stringify(boatRoute.end)) {
+  if (JSON.stringify(start) === JSON.stringify(boatRoutes[0].start)
+    && JSON.stringify(end) === JSON.stringify(boatRoutes[0].end)) {
     console.log('Boat ride!');
     return {
       status: 200,
@@ -64,5 +64,5 @@ export {
   getRoute,
   getData,
   writeFile,
-  boatRoute,
+  boatRoutes,
 };
