@@ -11,7 +11,7 @@ const map = new mapboxgl.Map({
   center: [12.35, 57.82],
   zoom: 2.35,
   minZoom: 2.35,
-  maxZoom: 4.5,
+  maxZoom: 6,
 });
 
 // When a click event occurs on a feature in the places layer, open a popup at the
