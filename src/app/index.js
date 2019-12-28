@@ -1,7 +1,9 @@
 import mapboxgl from 'mapbox-gl';
-import routes from '../data/routes.json';
+import moment from 'moment';
+// import routes from '../data/routes.json';
 import posts from '../data/geoJsonPosts.json';
-import cities from '../data/cities.json';
+// import cities from '../data/cities.json';
+import mapUtils from './map';
 
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2JzdG5iciIsImEiOiJjamwybm0xOXYwMDcwM3Fwa3h0amZsZ2F3In0.dT34qctpNYbAjJCN5nrMsQ';
 
@@ -14,12 +16,12 @@ const map = new mapboxgl.Map({
   maxZoom: 6,
 });
 
-// When a click event occurs on a feature in the places layer, open a popup at the
+// When a click event occurs on a feature in the cities layer, open a popup at the
 // location of the feature, with description HTML from its properties.
 map.on('click', 'cities', (e) => {
   const coordinates = e.features[0].geometry.coordinates.slice();
   const description = e.features[0].properties.description;
-
+  console.log('CITY', description);
   // Ensure that if the map is zoomed out such that multiple
   // copies of the feature are visible, the popup appears
   // over the copy being pointed to.
@@ -33,7 +35,7 @@ map.on('click', 'cities', (e) => {
     .addTo(map);
 });
 
-// When a click event occurs on a feature in the places layer, open a popup at the
+// When a click event occurs on a feature in the posts layer, open a popup at the
 // location of the feature, with description HTML from its properties.
 map.on('click', 'posts', (e) => {
   const coordinates = e.features[0].geometry.coordinates.slice();
@@ -83,7 +85,8 @@ function loadItinerary(map, routes) {
   });
 }
 
-function loadGeoJson(map, name, data) {
+function loadGeoJsonSymbol(map, name, data) {
+  console.log(name, data);
   map.addLayer({
     id: name,
     type: 'symbol',
@@ -93,12 +96,21 @@ function loadGeoJson(map, name, data) {
     },
     layout: {
       'icon-image': '{icon}-11',
-      'icon-allow-overlap': true,
-      // "icon-color": "#000000"
     },
-    // paint: {
-    //   'fill-color': '#00ffff',
-    // },
+  });
+}
+
+function loadGeoJsonLine(map, name, data) {
+  map.addLayer({
+    id: name,
+    type: 'line',
+    source: {
+      type: 'geojson',
+      data,
+    },
+    paint: {
+      'line-width': 2,
+    },
   });
 }
 
@@ -115,9 +127,20 @@ function loadPosts(map, posts) {
   });
 }
 
-map.on('load', () => {
-  loadItinerary(map, routes);
-  loadGeoJson(map, 'posts', posts);
-  loadGeoJson(map, 'cities', cities);
-  // loadCities(map,cities);
+map.on('load', async () => {
+  // loadItinerary(map, routes);
+  loadGeoJsonSymbol(map, 'posts', posts);
+
+  const routes = await mapUtils.getRoutes();
+  const geoJsonRoutes = mapUtils.toGeoJson(routes);
+  geoJsonRoutes.features.forEach((route, index) => loadGeoJsonLine(map, `route${index}`, route));
+
+  const cities = await mapUtils.getCities();
+  const geoJsonCities = mapUtils.toGeoJson(cities);
+  loadGeoJsonSymbol(map, 'cities', geoJsonCities);
+
+  const today = moment().format('DD/MM/YYYY');
+  const currentLocation = mapUtils.getLocation(today, geoJsonCities.features);
+  currentLocation.properties.icon = 'bus';
+  loadGeoJsonSymbol(map, 'currentLocation', currentLocation);
 });

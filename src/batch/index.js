@@ -35,27 +35,27 @@ getData(googleSheetUrl)
     }))
   .catch(err => console.log('ERROR', err));
 
-// getData(instagramURL)
-//   .then((response) => {
-//     console.log(`Existing posts: ${existingPosts.length} / Updated posts: ${response.data.data.length}`);
-//     return response.data.data;
-//   })
-//   .then(data => updatePostList(existingPosts, data))
-//   .then((posts) => {
-//     fs.writeFile(`${__dirname}/../data/posts.json`, JSON.stringify(posts), (err) => {
-//       if (err) throw err;
-//       console.log('Posts saved');
-//     });
-//     return posts;
-//   })
-//   .then((posts) => {
-//     const parsedPosts = posts.map(post => ({
-//       lat: post.location.latitude,
-//       lng: post.location.longitude,
-//       icon: 'attraction',
-//       description: `<a href="${post.link}" target="_blank"><img style="height:300px;width:300px" src=${post.images.standard_resolution.url}></a>`,
-//     }));
-//     const geoJsonPosts = geojson.parse(parsedPosts, { Point: ['lat', 'lng'] });
-//     writeFile(`${__dirname}/../data/geoJsonPosts.json`, JSON.stringify(geoJsonPosts), 'GeoJson Posts saved!');
-//   })
-//   .catch(err => console.error(err));
+getData(instagramURL)
+  .then((response) => {
+    console.log(`Existing posts: ${existingPosts.length} / Updated posts: ${response.data.data.length}`);
+    return response.data.data;
+  })
+  .then(data => updatePostList(existingPosts, data))
+  .then((posts) => {
+    fs.writeFile(`${__dirname}/../data/posts.json`, JSON.stringify(posts), (err) => {
+      if (err) throw err;
+      console.log('Posts saved');
+    });
+    return posts;
+  })
+  .then((posts) => {
+    const parsedPosts = posts.map(post => ({
+      lat: post.location.latitude,
+      lng: post.location.longitude,
+      icon: 'attraction',
+      description: `<a href="${post.link}" target="_blank"><img style="height:300px;width:300px" src=${post.images.standard_resolution.url}></a>`,
+    }));
+    const geoJsonPosts = geojson.parse(parsedPosts, { Point: ['lat', 'lng'] });
+    writeFile(`${__dirname}/../data/geoJsonPosts.json`, JSON.stringify(geoJsonPosts), 'GeoJson Posts saved!');
+  })
+  .catch(err => console.error(err));
